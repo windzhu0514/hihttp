@@ -31,14 +31,14 @@ func ExamplePost() {
 	postData := url.Values{}
 	postData.Add("hi", "everyone")
 	postData.Add("go", "is a good language")
-	postData.Add("http", "is a good package")
-	code, data, err := Post(srv.URL, postData.Encode(), PostOption{ContentType: CTApplicationForm})
+	postData.Add("hihttp", "is a good package")
+	code, data, err := Post(srv.URL, MIMEPOSTForm, postData.Encode())
 	fmt.Println(code, string(data), err)
 
 	// Output:
 	// hi everyone
 	// go is a good language
-	// http is a good package
+	// hihttp is a good package
 	// 200  <nil>
 }
 

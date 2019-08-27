@@ -35,13 +35,14 @@ func Get(url string) (statusCode int, resp []byte, err error) {
 }
 
 // Post 使用默认Client发送Get请求
-func Post(url string, body interface{}) (statusCode int, resp []byte, err error) {
+func Post(url, contentType string, body interface{}) (statusCode int, resp []byte, err error) {
 
 	req := defaultClient.Post(url)
 	if err != nil {
 		return
 	}
 
+	req.SetHead("Content-Type", contentType)
 	req.SetBody(body)
 
 	var response *Response
@@ -465,7 +466,6 @@ type Request struct {
 	body        interface{}
 	cookies     []*http.Cookie
 
-	contentType                       string
 	dialTimeout                       time.Duration
 	responseTimeout                   time.Duration
 	keepParamAddOrder                 bool
@@ -659,10 +659,6 @@ func (r *Request) Do() (*Response, error) {
 
 	for key, value := range r.heads {
 		req.Header[key] = value
-	}
-
-	if req.Method == http.MethodPost && r.contentType != "" {
-		req.Header.Set("Content-Type", r.contentType)
 	}
 
 	if len(r.cookies) > 0 {
