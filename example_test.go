@@ -24,7 +24,7 @@ func ExamplePost() {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("hi", r.FormValue("hi"))
 		fmt.Println("go", r.FormValue("go"))
-		fmt.Println("http", r.FormValue("http"))
+		fmt.Println("hihttp", r.FormValue("hihttp"))
 	}))
 	defer srv.Close()
 

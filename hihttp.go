@@ -270,27 +270,27 @@ func (c *Client) NewRequest(method, url string) *Request {
 
 // Get 新建Get请求
 func (c *Client) Get(url string) *Request {
-	return c.NewRequest(url, "GET")
+	return c.NewRequest("GET", url)
 }
 
 // Post 新建Post请求
 func (c *Client) Post(url string) *Request {
-	return c.NewRequest(url, "POST")
+	return c.NewRequest("POST", url)
 }
 
 // Put 新建Put请求
 func (c *Client) Put(url string) *Request {
-	return c.NewRequest(url, "PUT")
+	return c.NewRequest("PUT", url)
 }
 
 // Delete 新建Delete请求
 func (c *Client) Delete(url string) *Request {
-	return c.NewRequest(url, "DELETE")
+	return c.NewRequest("DELETE", url)
 }
 
 // Head 新建Head请求
 func (c *Client) Head(url string) *Request {
-	return c.NewRequest(url, "HEAD")
+	return c.NewRequest("HEAD", url)
 }
 
 // SetTransport 给Client设置新的transport
