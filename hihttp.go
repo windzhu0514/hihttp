@@ -311,13 +311,13 @@ func (c *Client) transport() (*http.Transport, error) {
 
 // SetMaxConnsPerHost 设置每个Host的最大连接数 默认无限制
 func (c *Client) SetMaxConnsPerHost(n int) *Client {
-	transport, err := c.transport()
-	if err != nil {
-		c.log.Println(err.Error())
-		return c
-	}
+// 	transport, err := c.transport()
+// 	if err != nil {
+// 		c.log.Println(err.Error())
+// 		return c
+// 	}
 
-	//transport.MaxConnsPerHost = n
+//	transport.MaxConnsPerHost = n
 	return c
 }
 
