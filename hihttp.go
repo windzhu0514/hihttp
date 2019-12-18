@@ -317,7 +317,7 @@ func (c *Client) SetMaxConnsPerHost(n int) *Client {
 		return c
 	}
 
-	transport.MaxConnsPerHost = n
+	//transport.MaxConnsPerHost = n
 	return c
 }
 
