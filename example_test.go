@@ -42,6 +42,28 @@ func ExamplePost() {
 	// 200  <nil>
 }
 
+func ExamplePostForm() {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("hi", r.FormValue("hi"))
+		fmt.Println("go", r.FormValue("go"))
+		fmt.Println("hihttp", r.FormValue("hihttp"))
+	}))
+	defer srv.Close()
+
+	postData := NewValues()
+	postData.Add("hi", "everyone")
+	postData.Add("go", "is a good language")
+	postData.Add("hihttp", "is a good package")
+	code, data, err := PostForm(srv.URL, postData)
+	fmt.Println(code, string(data), err)
+
+	// Output:
+	// hi everyone
+	// go is a good language
+	// hihttp is a good package
+	// 200  <nil>
+}
+
 func ExampleProxy() {
 	SetProxy("socks5://127.0.0.1:1080")
 	// SetProxy("http://127.0.0.1:1080")
